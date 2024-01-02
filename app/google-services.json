@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "125124500271",
+    "project_id": "florinda-auth",
+    "storage_bucket": "florinda-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125124500271:android:bcbd1580a3fb4ba80c9fda",
+        "android_client_info": {
+          "package_name": "com.florinda.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs93vZKWTwsp9IlrForKvi8GSWawLzozA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

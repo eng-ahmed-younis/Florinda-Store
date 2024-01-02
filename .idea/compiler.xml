@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="Florinda_Foods.app" target="17" />
+      <module name="Florinda_Foods.data" target="17" />
+      <module name="Florinda_Foods.domain" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
