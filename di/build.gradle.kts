@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "com.florinda.di"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
-        minSdk = 27
+        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -34,36 +34,34 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(project(path = ":domain"))
     implementation(project(path = ":data"))
 
 
-
-    val koinVersion = "3.5.0"
-    api("io.insert-koin:koin-core:$koinVersion")
-    api("io.insert-koin:koin-core-coroutines:$koinVersion")
-    api("io.insert-koin:koin-android:$koinVersion")
-    api("io.insert-koin:koin-androidx-compose:3.4.1")
+    api(libs.koin.core)
+    api(libs.koin.core.coroutines)
+    api(libs.koin.android)
+    api(libs.koin.androidx.compose)
 
 
     /** Retrofit */
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     /** OkHttp */
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation(libs.logging.interceptor)
+    implementation(libs.okhttp)
 
     //firebase
-    implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation(libs.google.firebase.auth)
 
-    api("com.jakewharton.timber:timber:5.0.1")
+    api(libs.timber)
 
 }

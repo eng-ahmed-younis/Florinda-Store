@@ -79,3 +79,12 @@ fun FlorindaFoodsTheme(
         content = content
     )
 }
+
+
+data class DarkTheme(val isDark: Boolean = false)
+
+enum class AppTheme {
+    MODE_AUTO,
+    MODE_NIGHT,
+    MODE_DAY
+}

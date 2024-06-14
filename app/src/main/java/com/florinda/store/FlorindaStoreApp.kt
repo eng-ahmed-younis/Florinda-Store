@@ -1,7 +1,11 @@
 package com.florinda.store
 
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
@@ -15,6 +19,7 @@ import com.florinda.di.repositoryModules
 import com.florinda.di.useCaseModules
 import com.florinda.store.di.connectivityModule
 import com.florinda.store.di.viewModelModules
+import com.florinda.utils.Constants
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -29,6 +34,7 @@ class FlorindaStoreApp : Application(), ImageLoaderFactory {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         startKoinDI(this@FlorindaStoreApp)
+        createNotificationChannel()
     }
 
     override fun newImageLoader(): ImageLoader {
@@ -58,6 +64,20 @@ class FlorindaStoreApp : Application(), ImageLoaderFactory {
     override fun onTerminate() {
         super.onTerminate()
         stopKoin()
+    }
+
+
+    private fun createNotificationChannel(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val channel = NotificationChannel(
+                "florinda_channel_id",
+                "Florinda",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
 }

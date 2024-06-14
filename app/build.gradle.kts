@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-//    alias(libs.plugins.kotlin.kapt)
-   // id("kotlin-kapt")
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
@@ -15,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.florinda.store"
-        minSdk = 27
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -77,71 +75,68 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.test.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-
+    implementation (libs.androidx.activity.ktx)
 
     implementation(project(path = ":domain"))
     implementation(project(path = ":di"))
 
     //firebase 
-    implementation("com.google.firebase:firebase-analytics")
-    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-crashlytics")
-
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
 
 
 
     // lifecycle compose
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.1")
+    implementation(libs.androidx.lifecycle.runtime.compose)
     // material compose
-    implementation("androidx.compose.material3:material3:1.2.1")
+    implementation(libs.material3)
 
     /** Lifecycle */
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v282)
 
     /** Material icons */
-    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+    implementation(libs.androidx.material.icons.extended)
 
     /** Navigation */
-    val nav_version = "2.7.5"
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation(libs.androidx.navigation.compose.v275)
 
     /** Coil */
-    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation(libs.coil.compose)
 
 
 
     // Compose dependencies
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
-    implementation("androidx.navigation:navigation-compose:2.7.5")
-    implementation("com.google.accompanist:accompanist-flowlayout:0.17.0")
-    implementation("com.google.accompanist:accompanist-navigation-animation:0.17.0")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
-    implementation("com.google.maps.android:maps-compose:1.0.0")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.accompanist.flowlayout)
+    implementation(libs.accompanist.navigation.animation)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.maps.compose)
 
     // Google Maps
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation(libs.play.services.maps)
 
     // Coroutine Lifecycle Scopes
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx.v262)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v282)
 
     //Lifecycle
-    val compose_version = "1.5.4"
-    implementation("androidx.compose.runtime:runtime-livedata:$compose_version")
+    implementation(libs.androidx.runtime.livedata)
 
     // Paging Compose
-    implementation("com.google.accompanist:accompanist-pager:0.17.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.17.0")
-    implementation("androidx.paging:paging-compose:3.3.0-alpha02")
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicators)
+    implementation(libs.androidx.paging.compose)
 
     //palette
-    implementation("androidx.palette:palette-ktx:1.0.0")
+    implementation(libs.androidx.palette.ktx)
 
     //timber
     implementation(libs.androidx.datastore.preferences)

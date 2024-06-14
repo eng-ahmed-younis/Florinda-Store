@@ -1,10 +1,8 @@
-package com.florinda.store.viewModels
+package com.florinda.store.ui.screens.on_boarding
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.florinda.domain.repository.IPreferenceDataStoreAPI
-import com.florinda.store.ui.screens.on_boarding.OnBoardIntents
-import com.florinda.store.ui.screens.on_boarding.OnBoardingState
 import com.florinda.utils.DataStoreKeys.ON_BOARDING_SEEN
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
@@ -12,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
 class OnBoardingViewModel constructor(

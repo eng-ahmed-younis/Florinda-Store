@@ -1,11 +1,9 @@
-package com.florinda.store.viewModels
+package com.florinda.store.ui.screens.bottom.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.florinda.domain.use_case.GetCategoriesUseCase
 import com.florinda.domain.use_case.GetOrdersByCategoriesUseCase
-import com.florinda.store.ui.screens.bottom.home.HomeIntents
-import com.florinda.store.ui.screens.bottom.home.HomeState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

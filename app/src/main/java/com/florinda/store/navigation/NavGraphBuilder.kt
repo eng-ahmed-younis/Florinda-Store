@@ -14,18 +14,18 @@ import com.florinda.store.ui.screens.auth.login.LoginScreen
 import com.florinda.store.ui.screens.bottom.favourite.FavouriteScreen
 import com.florinda.store.ui.screens.bottom.home.HomeScreen
 import com.florinda.store.ui.screens.bottom.card.CardScreen
-import com.florinda.store.viewModels.HomeViewModel
+import com.florinda.store.ui.screens.bottom.home.HomeViewModel
 import com.florinda.store.ui.screens.bottom.profile.ProfileScreen
-import com.florinda.store.viewModels.LoginViewModel
+import com.florinda.store.ui.screens.auth.login.LoginViewModel
 import com.florinda.store.ui.screens.orders.OrdersScreen
 import com.florinda.store.ui.screens.search.SearchScreen
-import com.florinda.store.viewModels.OrdersViewModel
+import com.florinda.store.ui.screens.orders.OrdersViewModel
 import com.florinda.store.ui.screens.on_boarding.OnBoardingScreen
-import com.florinda.store.viewModels.WelcomeViewModel
-import com.florinda.store.viewModels.OnBoardingViewModel
+import com.florinda.store.ui.screens.welcome.WelcomeViewModel
+import com.florinda.store.ui.screens.on_boarding.OnBoardingViewModel
 import com.florinda.store.ui.utils.ConnectivityObserver
-import com.florinda.store.viewModels.RegistrationViewModel
-import com.florinda.store.viewModels.SearchViewModel
+import com.florinda.store.ui.screens.auth.register.RegistrationViewModel
+import com.florinda.store.ui.screens.search.SearchViewModel
 import kotlinx.coroutines.flow.StateFlow
 import org.koin.androidx.compose.koinViewModel
 

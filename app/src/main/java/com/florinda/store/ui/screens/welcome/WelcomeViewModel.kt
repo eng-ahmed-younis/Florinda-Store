@@ -1,11 +1,9 @@
-package com.florinda.store.viewModels
+package com.florinda.store.ui.screens.welcome
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.florinda.domain.model.Resource
 import com.florinda.domain.use_case.auth_use_case.GetCurrentUserUseCase
-import com.florinda.store.ui.screens.welcome.WelcomeIntents
-import com.florinda.store.ui.screens.welcome.WelcomeState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

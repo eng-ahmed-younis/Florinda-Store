@@ -1,19 +1,16 @@
-package com.florinda.store.viewModels
+package com.florinda.store.ui.screens.search
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.florinda.domain.model.Resource
 import com.florinda.domain.use_case.GetOrdersUseCase
-import com.florinda.store.ui.screens.search.SearchIntents
-import com.florinda.store.ui.screens.search.SearchState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class SearchViewModel(
     private val getOrdersUseCase: GetOrdersUseCase,
