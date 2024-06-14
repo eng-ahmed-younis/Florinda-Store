@@ -30,13 +30,14 @@ import com.florinda.store.ui.theme.colorPrimary
 
 @Composable
 fun ScreenAppBar(
+    modifier: Modifier = Modifier,
     screenTitle: String,
     onBackClicked: () -> Unit,
 ) {
 
     Row(
-        modifier = Modifier
-            .padding(top = 10.dp)
+        modifier = modifier
+            .padding(top = 20.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     )
@@ -86,12 +87,12 @@ fun ScreenTitle(
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun ScreenAppBarPreview() {
-    ScreenAppBar("Sing In", {})
+    ScreenAppBar(modifier = Modifier, "Sing In", {})
 }
 
 @Composable
 @Preview(showBackground = true, showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun ScreenAppBarPreviewDark() {
-    ScreenAppBar("Sing In", {})
+    ScreenAppBar(modifier = Modifier, "Sing In", {})
 
 }
