@@ -61,6 +61,7 @@ fun NavGraphBuilder.buildNavigationGraph(
             )
         }
     ) {
+
         val viewModel = koinViewModel<OnBoardingViewModel>()
         SplashScreen(
             navController = navController,

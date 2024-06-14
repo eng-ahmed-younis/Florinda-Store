@@ -26,6 +26,7 @@ val colorBottomBarBackground = Color(0xFF292828)
 val colorItemsLight = Color(0xFFE0E0E0)
 val colorItemsDark = Color(0xFF313131)
 val colorBackgroundDark = Color(0xFF5A5A5A)
+val colorBackgroundLight = colorPrimary
 
 
 val colorPrimary200 = Color(0xFF1C0B2B)

@@ -8,13 +8,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -70,7 +73,10 @@ fun WelcomeScreen(
             .background(if (darkTheme) colorBottomBarBackground else colorPrimary)
             .verticalScroll(rememberScrollState())
     ) {
+        Spacer(Modifier.windowInsetsTopHeight(WindowInsets.systemBars))
+
         ScreenAppBar(
+            modifier = Modifier.padding(top = 20.dp),
             screenTitle = "Welcome",
             onBackClicked = { navController.popBackStack() }
         )

@@ -16,9 +16,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
@@ -30,8 +33,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -142,14 +147,35 @@ fun LoginScreen(
             }
 
             Spacer(modifier = Modifier.height(SpaceSmall))
-            UserButton(
+          /*  UserButton(
                 darkTheme = darkTheme,
                 title = stringResource(id = R.string.create_new_account),
                 backgroundColor = if (darkTheme) colorPrimary else colorBlack
             ) {
                 navController.popBackStack()
                 navController.navigate(Router.RegistrationScreen.route)
+            }*/
+
+            val showDialog = remember { mutableStateOf(false) } // State variable to control dialog visibility
+            if (showDialog.value) {
+                AlertDialogExample(
+                    onDismissRequest = {
+                                       showDialog.value = false
+                    },
+                    onConfirmation = {
+
+                    },
+                    dialogTitle = "Registration Complete",
+                    dialogText = "You have successfully registered!",
+                    icon = Icons.Filled.Image
+                )
+
             }
+
+            Button(onClick = { showDialog.value = true }) {
+                Text("Show Dialog")
+            }
+
             Spacer(modifier = Modifier.height(SpaceLarge))
             ForgotPassword {
                 navController.popBackStack()
