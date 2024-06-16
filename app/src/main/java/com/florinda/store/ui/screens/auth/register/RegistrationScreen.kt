@@ -12,11 +12,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.florinda.store.R
-import com.florinda.store.component.ScreenAppBar
-import com.florinda.store.component.auth_component.Email
-import com.florinda.store.component.auth_component.Password
-import com.florinda.store.component.auth_component.UserButton
+import com.florinda.store.app_component.ScreenAppBar
+import com.florinda.store.app_component.auth_component.Email
+import com.florinda.store.app_component.auth_component.Password
+import com.florinda.store.app_component.auth_component.UserButton
 import com.florinda.store.navigation.Router
+import com.florinda.store.ui.screens.main.LocalNavController
 import com.florinda.store.ui.theme.SpaceMedium
 import com.florinda.store.ui.theme.SpaceSmall
 import com.florinda.store.ui.theme.SpaceXLarge
@@ -31,13 +32,13 @@ import timber.log.Timber
 
 @Composable
 fun RegistrationScreen(
-    navController: NavController,
     state: State<RegisterState>,
     intentChannel: Channel<RegisterIntents>,
     darkTheme: Boolean = isSystemInDarkTheme(),
 ) {
 
     val scope = rememberCoroutineScope()
+    val navController = LocalNavController.current
 
 
     LaunchedEffect(key1 = state.value.data) {
@@ -106,7 +107,6 @@ fun RegistrationScreen(
 @Preview
 fun RegistrationScreenPreview() {
     RegistrationScreen(
-        rememberNavController(),
         state = remember {
             mutableStateOf(
                 RegisterState(
@@ -125,7 +125,6 @@ fun RegistrationScreenPreview() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun RegistrationScreenDarkPreview() {
     RegistrationScreen(
-        rememberNavController(),
         state = remember {
             mutableStateOf(
                 RegisterState(

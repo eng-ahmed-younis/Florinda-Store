@@ -30,4 +30,12 @@
     <string name="sing_up">Sing Up</string>
 
 
+    <!-- screens title -->
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="search">Search</string>
+    <string name="notification">Notification</string>
+    <string name="profile">Profile</string>
+
+
 </resources>

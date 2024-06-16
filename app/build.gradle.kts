@@ -92,12 +92,12 @@ dependencies {
 
     // lifecycle compose
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v282)
+
     // material compose
     implementation(libs.material3)
-
-    /** Lifecycle */
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx.v282)
 
     /** Material icons */
     implementation(libs.androidx.material.icons.extended)

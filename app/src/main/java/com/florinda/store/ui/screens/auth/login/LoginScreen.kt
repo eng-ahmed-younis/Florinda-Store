@@ -36,11 +36,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.florinda.store.R
-import com.florinda.store.component.ScreenAppBar
-import com.florinda.store.component.auth_component.Email
-import com.florinda.store.component.auth_component.Password
-import com.florinda.store.component.auth_component.UserButton
+import com.florinda.store.app_component.ScreenAppBar
+import com.florinda.store.app_component.auth_component.Email
+import com.florinda.store.app_component.auth_component.Password
+import com.florinda.store.app_component.auth_component.UserButton
 import com.florinda.store.navigation.Router
+import com.florinda.store.ui.screens.main.LocalNavController
 import com.florinda.store.ui.theme.SpaceLarge
 import com.florinda.store.ui.theme.SpaceSmall
 import com.florinda.store.ui.theme.colorBlack
@@ -55,7 +56,6 @@ import timber.log.Timber
 
 @Composable
 fun LoginScreen(
-    navController: NavController,
     state: State<LoginState>,
     intentChannel: Channel<LoginIntents>,
     connectivityStatus: StateFlow<ConnectivityObserver.State>?,
@@ -67,6 +67,7 @@ fun LoginScreen(
     var userEmail by rememberSaveable { mutableStateOf("") }
     var userPassword by rememberSaveable { mutableStateOf("") }
     val scope = rememberCoroutineScope()
+    val navController = LocalNavController.current
 
 
     Box(
@@ -200,7 +201,6 @@ fun verifyUserEmailAndPassword(
 @Preview(showBackground = true, showSystemUi = true)
 fun LoginScreenPreview() {
     LoginScreen(
-        rememberNavController(),
         state = remember {
             mutableStateOf(
                 LoginState(
@@ -218,7 +218,6 @@ fun LoginScreenPreview() {
 @Preview(showBackground = true, showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun LoginScreenPreviewDark() {
     LoginScreen(
-        rememberNavController(),
         state = remember {
             mutableStateOf(
                 LoginState(

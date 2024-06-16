@@ -6,26 +6,26 @@ import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.florinda.store.ui.screens.on_boarding.SplashScreen
-import com.florinda.store.ui.screens.welcome.WelcomeScreen
+import com.florinda.store.ui.screens.board.on_boarding.SplashScreen
+import com.florinda.store.ui.screens.board.welcome.WelcomeScreen
 import com.florinda.store.ui.screens.auth.forget_password.ForgetPasswordScreen
 import com.florinda.store.ui.screens.auth.register.RegistrationScreen
 import com.florinda.store.ui.screens.auth.login.LoginScreen
-import com.florinda.store.ui.screens.bottom.favourite.FavouriteScreen
-import com.florinda.store.ui.screens.bottom.home.HomeScreen
-import com.florinda.store.ui.screens.bottom.card.CardScreen
-import com.florinda.store.ui.screens.bottom.home.HomeViewModel
-import com.florinda.store.ui.screens.bottom.profile.ProfileScreen
+import com.florinda.store.ui.screens.main.favourite.FavouriteScreen
+import com.florinda.store.ui.screens.main.home.HomeScreen
+import com.florinda.store.ui.screens.main.card.CardScreen
+import com.florinda.store.ui.screens.main.home.HomeViewModel
+import com.florinda.store.ui.screens.main.profile.ProfileScreen
 import com.florinda.store.ui.screens.auth.login.LoginViewModel
-import com.florinda.store.ui.screens.orders.OrdersScreen
-import com.florinda.store.ui.screens.search.SearchScreen
-import com.florinda.store.ui.screens.orders.OrdersViewModel
-import com.florinda.store.ui.screens.on_boarding.OnBoardingScreen
-import com.florinda.store.ui.screens.welcome.WelcomeViewModel
-import com.florinda.store.ui.screens.on_boarding.OnBoardingViewModel
+import com.florinda.store.ui.screens.main.orders.OrdersScreen
+import com.florinda.store.ui.screens.main.search.SearchScreen
+import com.florinda.store.ui.screens.main.orders.OrdersViewModel
+import com.florinda.store.ui.screens.board.on_boarding.OnBoardingScreen
+import com.florinda.store.ui.screens.board.welcome.WelcomeViewModel
+import com.florinda.store.ui.screens.board.on_boarding.OnBoardingViewModel
 import com.florinda.store.ui.utils.ConnectivityObserver
 import com.florinda.store.ui.screens.auth.register.RegistrationViewModel
-import com.florinda.store.ui.screens.search.SearchViewModel
+import com.florinda.store.ui.screens.main.search.SearchViewModel
 import kotlinx.coroutines.flow.StateFlow
 import org.koin.androidx.compose.koinViewModel
 
@@ -175,7 +175,6 @@ fun NavGraphBuilder.buildNavigationGraph(
     ) {
         val viewModel = koinViewModel<LoginViewModel>()
         LoginScreen(
-            navController = navController,
             state = viewModel.state.collectAsState(),
             intentChannel = viewModel.intentChannels,
             connectivityStatus = connectivityStatus
@@ -214,7 +213,6 @@ fun NavGraphBuilder.buildNavigationGraph(
     ) {
         val viewModel = koinViewModel<RegistrationViewModel>()
         RegistrationScreen(
-            navController  = navController,
             state = viewModel.state.collectAsState(),
             intentChannel = viewModel.intentChannel
         )
@@ -273,9 +271,7 @@ fun NavGraphBuilder.buildNavigationGraph(
             )
         }
     ) {
-        ForgetPasswordScreen(
-            navController = navController
-        )
+        ForgetPasswordScreen()
     }
 
 

@@ -8,13 +8,14 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.florinda.store.ui.screens.main.LocalNavController
 
 
 @Composable
 fun ForgetPasswordScreen(
-    navController: NavController,
     darkTheme: Boolean = isSystemInDarkTheme(),
 ){
+    val navController = LocalNavController.current
     Text(text = "ForgetPasswordScreen")
 }
 
@@ -26,7 +27,7 @@ fun ForgetPasswordScreen(
 )
 fun ForgetPasswordScreenPreviewLight(){
     ForgetPasswordScreen(
-        rememberNavController()
+
     )
 }
 
@@ -38,8 +39,6 @@ fun ForgetPasswordScreenPreviewLight(){
     showSystemUi = true,
 )
 fun ForgetPasswordScreenPreviewNight(){
-ForgetPasswordScreen(
-    rememberNavController()
-)
+ForgetPasswordScreen()
 }
 
