@@ -1,29 +1,28 @@
-package com.florinda.store.navigation.enhance
+package com.florinda.store.navigation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.florinda.store.navigation.Router
-import com.florinda.store.ui.screens.board.on_boarding.OnBoardingScreen
-import com.florinda.store.ui.screens.board.on_boarding.OnBoardingViewModel
-import com.florinda.store.ui.screens.board.on_boarding.SplashScreen
-import com.florinda.store.ui.screens.board.welcome.WelcomeScreen
-import com.florinda.store.ui.screens.board.welcome.WelcomeViewModel
+import com.florinda.store.ui.screens.welcome.on_boarding.OnBoardingScreen
+import com.florinda.store.ui.screens.welcome.on_boarding.OnBoardingViewModel
+import com.florinda.store.ui.screens.welcome.splash.SplashScreen
+import com.florinda.store.ui.screens.welcome.welcome.WelcomeScreen
+import com.florinda.store.ui.screens.welcome.welcome.WelcomeViewModel
 import org.koin.androidx.compose.koinViewModel
 import androidx.navigation.navigation
 
 fun NavGraphBuilder.welcomeNavGraph() {
 
     navigation(
-        startDestination = AppScreen.Welcome.Splash.route,
-        route = AppScreen.Welcome.route
+        route = AppScreen.WelcomeGraph.route,
+        startDestination = AppScreen.WelcomeGraph.SplashScreen.route
     ) {
 
         /* SplashScreen */
         composable(
-            AppScreen.Welcome.Splash.route,
+            AppScreen.WelcomeGraph.SplashScreen.route,
             enterTransition = {
                 slideIntoContainer(
                     towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
@@ -59,7 +58,7 @@ fun NavGraphBuilder.welcomeNavGraph() {
 
         /* OnBoarding Screen */
         composable(
-            Router.OnBoardingScreen.route,
+            AppScreen.WelcomeGraph.OnBoardingScreen.route,
             enterTransition = {
                 slideIntoContainer(
                     towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
@@ -95,7 +94,7 @@ fun NavGraphBuilder.welcomeNavGraph() {
 
         /* WelcomeScreen */
         composable(
-            Router.WelcomeScreen.route,
+            AppScreen.WelcomeGraph.WelcomeScreen.route,
             enterTransition = {
                 slideIntoContainer(
                     towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,

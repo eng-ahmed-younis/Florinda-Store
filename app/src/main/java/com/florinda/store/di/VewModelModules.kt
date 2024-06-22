@@ -4,11 +4,11 @@ import com.florinda.di.DispatchersAnnotations
 import com.florinda.store.ui.screens.auth.login.LoginViewModel
 import com.florinda.store.ui.screens.main.home.HomeViewModel
 import com.florinda.store.ui.screens.main.orders.OrdersViewModel
-import com.florinda.store.ui.screens.board.on_boarding.OnBoardingViewModel
+import com.florinda.store.ui.screens.welcome.on_boarding.OnBoardingViewModel
 import com.florinda.store.ui.screens.auth.register.RegistrationViewModel
 import com.florinda.store.ui.screens.main.search.SearchViewModel
 import com.florinda.store.ui.screens.main.setting.SettingViewModel
-import com.florinda.store.ui.screens.board.welcome.WelcomeViewModel
+import com.florinda.store.ui.screens.welcome.welcome.WelcomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.qualifier.named

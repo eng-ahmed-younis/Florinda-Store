@@ -8,11 +8,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -33,15 +37,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.florinda.store.R
 import com.florinda.store.app_component.ScreenAppBar
 import com.florinda.store.app_component.auth_component.Email
 import com.florinda.store.app_component.auth_component.Password
 import com.florinda.store.app_component.auth_component.UserButton
-import com.florinda.store.navigation.Router
+import com.florinda.store.navigation.AppScreen
 import com.florinda.store.ui.screens.main.LocalNavController
+import com.florinda.store.ui.screens.main.LocalNetworkStatus
+import com.florinda.store.ui.screens.main.LocalTheme
 import com.florinda.store.ui.theme.SpaceLarge
 import com.florinda.store.ui.theme.SpaceSmall
 import com.florinda.store.ui.theme.colorBlack
@@ -58,8 +62,6 @@ import timber.log.Timber
 fun LoginScreen(
     state: State<LoginState>,
     intentChannel: Channel<LoginIntents>,
-    connectivityStatus: StateFlow<ConnectivityObserver.State>?,
-    darkTheme: Boolean = isSystemInDarkTheme(),
 ) {
 
     var isEmailEmpty by rememberSaveable { mutableStateOf(false) }
@@ -68,6 +70,8 @@ fun LoginScreen(
     var userPassword by rememberSaveable { mutableStateOf("") }
     val scope = rememberCoroutineScope()
     val navController = LocalNavController.current
+    val connectivityStatus = LocalNetworkStatus.current
+    val darkTheme = LocalTheme.current.isDark
 
 
     Box(
@@ -81,13 +85,18 @@ fun LoginScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            ScreenAppBar(
-                screenTitle = "Log In",
-                onBackClicked = { navController.popBackStack() }
-            )
-            Spacer(modifier = Modifier.height(20.dp))   
+            Column {
+                Spacer(Modifier.windowInsetsTopHeight(WindowInsets.systemBars))
+                ScreenAppBar(
+                    screenTitle = "Log In",
+                    onBackClicked = { navController.popBackStack() }
+                )
+            }
+
+
             Image(
                 painter = painterResource(id = R.drawable.login_logo),
                 contentDescription = "login logo",
@@ -102,7 +111,8 @@ fun LoginScreen(
                 .fillMaxSize()
                 .align(Alignment.BottomCenter)
                 .padding(20.dp),
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Email(
@@ -123,6 +133,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(SpaceLarge))
             UserButton(
                 darkTheme = darkTheme,
+                modifier = Modifier.fillMaxWidth(fraction = .9f),
                 title = stringResource(id = R.string.login_text),
                 backgroundColor = if (darkTheme) colorPrimary else colorBlack
             ) {
@@ -132,13 +143,23 @@ fun LoginScreen(
                     emailState = { isEmailEmpty = it },
                     passwordState = { isPasswordEmpty = it }
                 ).let {
-                    if (it && connectivityStatus?.value == ConnectivityObserver.State.Available) {
-                        Timber.i(connectivityStatus?.value?.name.toString())
+                    if (it && connectivityStatus.value == ConnectivityObserver.State.Available) {
+                        Timber.i(connectivityStatus.value.name.toString())
                         scope.launch {
                             intentChannel.send(LoginIntents.LoginUser(userEmail, userPassword))
                         }
                     }
                 }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+
+            UserButton(
+                darkTheme = darkTheme,
+                modifier = Modifier.fillMaxWidth(fraction = .9f),
+                title = stringResource(id = R.string.create_new_account),
+                backgroundColor = if (darkTheme) colorPrimary else colorBlack
+            ) {
+                navController.navigate(AppScreen.AuthGraph.RegisterScreen.route)
             }
 
             Spacer(modifier = Modifier.height(SpaceSmall))
@@ -156,7 +177,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(SpaceLarge))
             ForgotPassword {
                 navController.popBackStack()
-                navController.navigate(Router.ForgotPasswordScreen.route)
+                navController.navigate(AppScreen.AuthGraph.ForgetPasswordScreen.route)
             }
         }
     }
@@ -209,7 +230,7 @@ fun LoginScreenPreview() {
             )
         },
         Channel { },
-        null
+
     )
 }
 
@@ -226,7 +247,7 @@ fun LoginScreenPreviewDark() {
             )
         },
         Channel { },
-        null
+
     )
 }
 

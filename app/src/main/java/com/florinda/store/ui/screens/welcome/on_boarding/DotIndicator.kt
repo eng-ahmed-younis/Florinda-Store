@@ -1,4 +1,4 @@
-package com.florinda.store.ui.screens.board.on_boarding
+package com.florinda.store.ui.screens.welcome.on_boarding
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -21,7 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.florinda.store.ui.theme.colorPrimary
 import com.florinda.store.ui.theme.colorWhite
-import okhttp3.internal.isSensitiveHeader
 
 
 @Composable

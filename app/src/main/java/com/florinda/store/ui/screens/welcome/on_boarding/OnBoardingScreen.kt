@@ -1,4 +1,4 @@
-package com.florinda.store.ui.screens.board.on_boarding
+package com.florinda.store.ui.screens.welcome.on_boarding
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -12,13 +12,15 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -44,10 +46,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.florinda.store.R
-import com.florinda.store.navigation.Router
+import com.florinda.store.navigation.AppScreen
 import com.florinda.store.ui.screens.main.LocalNavController
 import com.florinda.store.ui.theme.colorBottomBarBackground
 import com.florinda.store.ui.theme.colorItemsDark
@@ -90,6 +90,8 @@ fun OnBoardingScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround
     ) {
+        Spacer(Modifier.windowInsetsTopHeight(WindowInsets.systemBars))
+
         AnimatedContent(
             targetState = animate,
             modifier = Modifier
@@ -199,7 +201,7 @@ fun OnBoardingScreen(
                 } else {
                     finish = true
                     navController.popBackStack()
-                    navController.navigate(Router.WelcomeScreen.route)
+                    navController.navigate(AppScreen.WelcomeGraph.WelcomeScreen.route)
                 }
             }
 

@@ -28,7 +28,7 @@ fun StandardScaffold(
     modifier: Modifier = Modifier,
     showBottomBar: Boolean = true,
     onFabClick: () -> Unit = {},
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Scaffold(
         bottomBar = {
@@ -36,13 +36,13 @@ fun StandardScaffold(
                 BottomAppBar(
                     modifier = Modifier.fillMaxWidth(),
                     backgroundColor = if (isSystemInDarkTheme()) colorBottomBarBackground else colorWhite,
-                cutoutShape = CircleShape,
+                    cutoutShape = CircleShape,
                     elevation = 0.dp
                 ) {
                     BottomNavigation(
                         backgroundColor = if (isSystemInDarkTheme()) colorBottomBarBackground else Color.White
                     ) {
-                        BottomNavItem.bottomNavItemsList.forEachIndexed { index, bottomNavItem ->
+                        BottomNavItem.bottomNavItemsList.forEachIndexed { _, bottomNavItem ->
                             StandardBottomNavItem(
                                 icon = bottomNavItem.icon,
                                 contentDescription = bottomNavItem.contentDescription,
@@ -51,7 +51,7 @@ fun StandardScaffold(
                                 alertCount = bottomNavItem.alertCount,
                                 enabled = bottomNavItem.icon != null
                             ) {
-                                if (navController.currentDestination?.route != bottomNavItem.route){
+                                if (navController.currentDestination?.route != bottomNavItem.route) {
                                     navController.navigate(bottomNavItem.route)
                                 }
                             }

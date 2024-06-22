@@ -1,9 +1,7 @@
-package com.florinda.store.ui.screens.board.welcome
+package com.florinda.store.ui.screens.welcome.welcome
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,71 +20,63 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.unit.sp
 import com.florinda.store.R
 import com.florinda.store.app_component.ScreenAppBar
-import com.florinda.store.navigation.Router
-import com.florinda.store.ui.screens.main.LocalNavController
+import com.florinda.store.ui.screens.main.LocalTheme
 import com.florinda.store.ui.theme.colorBackgroundDark
 import com.florinda.store.ui.theme.colorBottomBarBackground
 import com.florinda.store.ui.theme.colorItemsDark
 import com.florinda.store.ui.theme.colorItemsLight
 import com.florinda.store.ui.theme.colorPrimary
 import com.florinda.store.ui.theme.colorRedDark
-import kotlinx.coroutines.channels.Channel
 
 @Composable
-fun WelcomeScreen(
-    state : State<WelcomeState>,
-    intentChannel : Channel<WelcomeIntents>,
-    darkTheme: Boolean = isSystemInDarkTheme(),
-) {
-    val navController = LocalNavController.current
+fun WelcomeScreenContent(
+    onBackClicked: () -> Unit,
+    getOrderClicked: () -> Unit,
+    ) {
 
-    LaunchedEffect(key1 = Unit){
-        intentChannel.send(WelcomeIntents.GetCurrentUser)
-    }
-
+    val darkTheme = LocalTheme.current.isDark
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(if (darkTheme) colorBottomBarBackground else colorPrimary)
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
     ) {
-        Spacer(Modifier.windowInsetsTopHeight(WindowInsets.systemBars))
-
-        ScreenAppBar(
-            modifier = Modifier.padding(top = 20.dp),
-            screenTitle = "Welcome",
-            onBackClicked = { navController.popBackStack() }
-        )
+        Column {
+            Spacer(Modifier.windowInsetsTopHeight(WindowInsets.systemBars))
+            ScreenAppBar(
+                screenTitle = "Welcome",
+                onBackClicked = { onBackClicked() }
+            )
+        }
 
         Column(
             modifier = Modifier
+                .fillMaxSize()
                 .align(Alignment.BottomCenter)
                 .padding(10.dp),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             Box(
                 modifier = Modifier
                     // maximum width to be equal to the [maximum width] multiplied by fraction
@@ -107,7 +97,7 @@ fun WelcomeScreen(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(330.dp)
+                    .height(350.dp)
                     .padding(10.dp),
                 shape = RoundedCornerShape(25.dp)
             ) {
@@ -125,32 +115,34 @@ fun WelcomeScreen(
                     Text(
                         text = "Need to Shop ?",
                         color = if (darkTheme) colorItemsLight else colorItemsDark,
-                        style = MaterialTheme.typography.h6
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 22.sp
+                        )
                     )
                     Text(
                         text = "Let’s order right now",
                         color = if (darkTheme) colorItemsLight else colorItemsDark,
-                        style = MaterialTheme.typography.h6
+                        style = TextStyle(
+                            fontWeight = FontWeight.Normal,
+                            fontSize = 16.sp,
+                            letterSpacing = 2.sp
+                        ),
+                        modifier = Modifier
+                            .padding(top = 2.dp)
                     )
                     Text(
                         text = "\n" +
                                 "The fastest delivery service in the\n" +
                                 "town, start ordering now\n",
                         color = if (darkTheme) colorItemsLight else colorItemsDark,
-                        style = MaterialTheme.typography.button,
+                        textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.height(10.dp))
 
                     Button(
                         onClick = {
-                            navController.popBackStack()
-                            if(state.value.currentUser == null){
-                                navController.popBackStack()
-                                navController.navigate(Router.LoginScreen.route)
-                            }else{
-                                navController.popBackStack()
-                                navController.navigate(Router.HomeScreen.route)
-                            }
+                            getOrderClicked()
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = colorRedDark),
                         modifier = Modifier
@@ -164,7 +156,6 @@ fun WelcomeScreen(
                         Text(
                             text = "Let’s order",
                             color = if (darkTheme) colorItemsLight else colorItemsDark,
-                            style = MaterialTheme.typography.button,
                             modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
                         )
                     }
@@ -174,27 +165,11 @@ fun WelcomeScreen(
     }
 }
 
-
 @Composable
-@Preview
-fun WelcomeScreenPreview() {
-    WelcomeScreen(
-        state = remember{
-            mutableStateOf(WelcomeState(false,null,null ))
-        },
-        Channel {  }
-    )
-}
-
-
-
-@Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-fun WelcomeScreenDarkPreview() {
-    WelcomeScreen(
-        state = remember{
-            mutableStateOf(WelcomeState(false,null,null ))
-        },
-        Channel {  }
+@Preview(showBackground = true, showSystemUi = true)
+fun WelcomeContentPreview() {
+    WelcomeScreenContent(
+        {},
+        {}
     )
 }

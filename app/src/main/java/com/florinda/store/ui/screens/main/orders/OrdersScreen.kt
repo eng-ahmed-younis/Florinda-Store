@@ -52,7 +52,7 @@ import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.florinda.domain.model.OrderModel
-import com.florinda.store.navigation.Router
+import com.florinda.store.navigation.AppScreen
 import com.florinda.store.ui.screens.main.orders.composables.OrdersHeader
 import com.florinda.store.ui.theme.colorBlack
 import com.florinda.store.ui.theme.colorBottomBarBackground
@@ -87,7 +87,7 @@ fun OrdersScreen(
         Spacer(modifier = Modifier.height(12.dp))
         OrdersHeader(
             searchButtonClick = {
-                navController.navigate(Router.SearchScreen.route)
+                navController.navigate(AppScreen.MainGraph.SearchScreen.route)
             },
             backClicked = { navController.popBackStack() }
         )

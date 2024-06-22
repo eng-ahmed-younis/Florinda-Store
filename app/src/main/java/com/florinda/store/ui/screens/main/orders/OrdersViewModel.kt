@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class OrdersViewModel constructor(
+class OrdersViewModel(
     private val getOrdersUseCase: GetOrdersUseCase,
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {

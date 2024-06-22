@@ -9,13 +9,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.florinda.store.ui.screens.main.LocalNavController
+import com.florinda.store.ui.screens.main.LocalTheme
 
 
 @Composable
 fun ForgetPasswordScreen(
-    darkTheme: Boolean = isSystemInDarkTheme(),
 ){
     val navController = LocalNavController.current
+    val darkTheme = LocalTheme.current.isDark
+
     Text(text = "ForgetPasswordScreen")
 }
 

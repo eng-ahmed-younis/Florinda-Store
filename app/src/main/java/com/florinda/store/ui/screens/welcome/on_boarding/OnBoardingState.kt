@@ -1,4 +1,4 @@
-package com.florinda.store.ui.screens.board.on_boarding
+package com.florinda.store.ui.screens.welcome.on_boarding
 
 data class OnBoardingState (
     val onBoardSeen : Boolean = false

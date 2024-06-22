@@ -36,6 +36,8 @@
     <string name="search">Search</string>
     <string name="notification">Notification</string>
     <string name="profile">Profile</string>
+    <string name="card">Card</string>
+    <string name="orders">Orders</string>
 
 
 </resources>

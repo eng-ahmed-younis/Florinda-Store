@@ -1,4 +1,4 @@
-package com.florinda.store.ui.screens.board.welcome
+package com.florinda.store.ui.screens.welcome.welcome
 
 import com.google.firebase.auth.FirebaseUser
 

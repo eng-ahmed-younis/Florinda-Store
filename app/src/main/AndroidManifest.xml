@@ -17,17 +17,23 @@
         android:theme="@style/Theme.FlorindaStore"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name="com.florinda.store.ui.screens.main.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.FlorindaStore">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".ui.utils.MyBroadCastReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

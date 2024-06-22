@@ -42,6 +42,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.florinda.store.R
+import com.florinda.store.ui.screens.main.LocalTheme
 import com.florinda.store.ui.theme.SpaceSmall
 import com.florinda.store.ui.theme.SpaceXLarge
 import com.florinda.store.ui.theme.colorBlack
@@ -54,10 +55,9 @@ import com.florinda.store.ui.theme.colorWhite
 
 @Composable
 fun OtpVerifyScreen(
-    darkTheme: Boolean = isSystemInDarkTheme(),
 ) {
 
-
+    val darkTheme = LocalTheme.current.isDark
     val code by rememberSaveable { mutableStateOf("") }
 
     Box(

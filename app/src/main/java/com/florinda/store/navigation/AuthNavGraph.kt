@@ -1,4 +1,4 @@
-package com.florinda.store.navigation.enhance
+package com.florinda.store.navigation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
@@ -16,16 +16,15 @@ import com.florinda.store.ui.utils.ConnectivityObserver
 import kotlinx.coroutines.flow.StateFlow
 import org.koin.androidx.compose.koinViewModel
 
-fun NavGraphBuilder.authNavGraph(
-    connectivityStatus: StateFlow<ConnectivityObserver.State>
-) {
+fun NavGraphBuilder.authNavGraph() {
+
     navigation(
-        startDestination = AppScreen.Auth.Login.route,
-        route = AppScreen.Main.route
-    ){
+        route = AppScreen.AuthGraph.route,
+        startDestination = AppScreen.AuthGraph.LoginScreen.route,
+    ) {
         /* LoginScreen */
         composable(
-            AppScreen.Auth.Login.route,
+            AppScreen.AuthGraph.LoginScreen.route,
             enterTransition = {
                 slideIntoContainer(
                     towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
@@ -55,15 +54,13 @@ fun NavGraphBuilder.authNavGraph(
             LoginScreen(
                 state = viewModel.state.collectAsState(),
                 intentChannel = viewModel.intentChannels,
-                connectivityStatus = connectivityStatus
             )
         }
 
 
-
         /* Registration Screen */
         composable(
-            AppScreen.Auth.Register.route,
+            AppScreen.AuthGraph.RegisterScreen.route,
             enterTransition = {
                 slideIntoContainer(
                     towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
@@ -99,7 +96,7 @@ fun NavGraphBuilder.authNavGraph(
 
         /* ForgotPasswordScreen */
         composable(
-            AppScreen.Auth.ForgetPassword.route,
+            AppScreen.AuthGraph.ForgetPasswordScreen.route,
             enterTransition = {
                 slideIntoContainer(
                     towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
@@ -129,10 +126,9 @@ fun NavGraphBuilder.authNavGraph(
         }
 
 
-
         /* OTP Screen */
         composable(
-            AppScreen.Auth.Otp.route,
+            AppScreen.AuthGraph.OtpScreen.route,
             enterTransition = {
                 slideIntoContainer(
                     towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,

@@ -39,7 +39,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.florinda.store.R
 import com.florinda.store.app_component.TopAppBarHome
-import com.florinda.store.navigation.Router
+import com.florinda.store.navigation.AppScreen
+import com.florinda.store.ui.screens.main.LocalNavController
 import com.florinda.store.ui.theme.SpaceLarge
 import com.florinda.store.ui.theme.colorBlack
 import com.florinda.store.ui.theme.colorBottomBarBackground
@@ -53,7 +54,6 @@ import timber.log.Timber
 @SuppressLint("MutableCollectionMutableState")
 @Composable
 fun HomeScreen(
-    navController: NavController,
     state: State<HomeState>,
     intentChannel: Channel<HomeIntents>,
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -61,6 +61,7 @@ fun HomeScreen(
 
     val context = LocalContext.current
     var categoryId by rememberSaveable { mutableIntStateOf(0) }
+    val navController = LocalNavController.current
 
 
     LaunchedEffect(key1 = Unit) {
@@ -124,7 +125,7 @@ fun HomeScreen(
                         categoryId = it
                     },
                     seeAllClicked = {
-                        navController.navigate(Router.OrdersScreen.route)
+                        navController.navigate(AppScreen.MainGraph.OrdersScreen.route)
                     },
                     
 
@@ -157,7 +158,6 @@ fun Title() {
 @Preview(showBackground = true, showSystemUi = true)
 fun HomeScreenPreview() {
     HomeScreen(
-        rememberNavController(),
         state = remember {
             mutableStateOf(
                 HomeState(
@@ -175,7 +175,6 @@ fun HomeScreenPreview() {
 @Preview(showBackground = true, showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 fun HomeScreenPreviewDark() {
     HomeScreen(
-        rememberNavController(),
         state = remember {
             mutableStateOf(
                 HomeState(

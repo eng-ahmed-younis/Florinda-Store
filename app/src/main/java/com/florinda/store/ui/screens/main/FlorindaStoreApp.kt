@@ -4,6 +4,8 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import coil.ImageLoader
 import coil.ImageLoaderFactory
@@ -18,6 +20,7 @@ import com.florinda.di.repositoryModules
 import com.florinda.di.useCaseModules
 import com.florinda.store.di.connectivityModule
 import com.florinda.store.di.viewModelModules
+import com.florinda.store.ui.utils.MyBroadCastReceiver
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -33,6 +36,12 @@ class FlorindaStoreApp : Application(), ImageLoaderFactory {
         Timber.plant(Timber.DebugTree())
         startKoinDI(this@FlorindaStoreApp)
         createNotificationChannel()
+
+        val broadCastReceiver = MyBroadCastReceiver()
+        val filter = IntentFilter().apply {
+            addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
+        }
+        registerReceiver(broadCastReceiver , filter)
     }
 
     override fun newImageLoader(): ImageLoader {
